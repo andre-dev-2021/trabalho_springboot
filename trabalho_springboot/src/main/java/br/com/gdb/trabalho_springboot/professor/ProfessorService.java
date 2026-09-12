@@ -21,7 +21,13 @@ public class ProfessorService {
                 .orElseThrow(() -> new ResourceNotFoundException("Professor não encontrado."));
     }
 
-    public void save(Professor professor) {
+    public void save(ProfessorRequestDTO request) {
+        Professor professor = new Professor(
+                request.nome(),
+                request.email(),
+                request.departamento()
+        );
+
         repository.save(professor);
     }
 }
