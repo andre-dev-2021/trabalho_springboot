@@ -6,11 +6,22 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import br.com.gdb.trabalho_springboot.util.dto.ErrorResponseDTO;
 import org.springframework.http.HttpStatus;
-import br.com.gdb.trabalho_springboot.util.exceptions.ResourceNotFoundException;
 import java.util.List;
+import br.com.gdb.trabalho_springboot.util.exceptions.*;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(InvalidReferenceException.class)
+    public ResponseEntity<ErrorResponseDTO> handleReferenceException(InvalidReferenceException ex){
+
+        ErrorResponseDTO error = new ErrorResponseDTO(
+            HttpStatus.UNPROCESSABLE_CONTENT.value(), 
+            ex.getMessage()
+        );
+
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_CONTENT).body(error);
+    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponseDTO> handleResourceException(ResourceNotFoundException ex){

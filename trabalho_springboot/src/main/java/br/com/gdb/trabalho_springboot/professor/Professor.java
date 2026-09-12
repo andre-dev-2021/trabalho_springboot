@@ -1,6 +1,7 @@
 package br.com.gdb.trabalho_springboot.professor;
 
 import jakarta.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 
