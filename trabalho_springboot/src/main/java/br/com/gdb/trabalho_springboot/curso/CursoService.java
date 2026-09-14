@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import br.com.gdb.trabalho_springboot.util.exceptions.*;
@@ -23,8 +24,8 @@ public class CursoService {
         return repository.findAll();
     }
 
-    public List<Curso> findByProfessor(Integer idProfessor){
-        return repository.findByProfessor(idProfessor);
+    public List<Curso> findByProfessorID(Integer idProfessor){
+        return repository.findByProfessorID(idProfessor);
     }
 
     public Curso findById(Integer id){
