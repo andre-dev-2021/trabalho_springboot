@@ -1,4 +1,4 @@
-package br.com.gdb.trabalho_springboot.curso;
+package br.com.gdb.trabalho_springboot.aluno;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,29 +9,30 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController 
-@RequestMapping("/curso")
-public class CursoController {
-    
+@RequestMapping("/aluno")
+public class AlunoController {
+
     @Autowired
-    private CursoService service;
+    private AlunoService service;
 
     @GetMapping
-    public List<Curso> findAll( @RequestParam(required = false) Integer idProfessor ){        
-        if(idProfessor != null){
-            return service.findByProfessorID(idProfessor);
+    public List<Aluno> findAll( @RequestParam(required = false) Integer idCurso ){        
+        if(idCurso != null){
+            return service.findByCursoID(idCurso);
         }
 
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public Curso findById(@PathVariable Integer id){
+    public Aluno findById(@PathVariable Integer id){
         return service.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@Valid @RequestBody CursoRequestDTO request) {
+    public void save(@Valid @RequestBody AlunoRequestDTO request) {
         service.save(request);
     }
+    
 }
