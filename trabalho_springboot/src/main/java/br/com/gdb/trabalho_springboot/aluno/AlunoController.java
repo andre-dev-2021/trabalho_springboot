@@ -16,7 +16,7 @@ public class AlunoController {
     private AlunoService service;
 
     @GetMapping
-    public List<Aluno> findAll( @RequestParam(required = false) Integer idCurso ){        
+    public List<AlunoResponseDTO> findAll( @RequestParam(required = false) Integer idCurso ){        
         if(idCurso != null){
             return service.findByCursoID(idCurso);
         }

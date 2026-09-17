@@ -18,12 +18,28 @@ public class AlunoService {
     @Autowired
     private CursoRepository cursoRepository;
 
-    public List<Aluno> findAll(){
-        return repository.findAll();
+    public List<AlunoResponseDTO> findAll(){
+        return repository.findAll()
+            .stream()
+            .map(aluno -> new AlunoResponseDTO(
+                aluno.getId(),
+                aluno.getNome(),
+                aluno.getEmail(),
+                aluno.getCurso() != null ? aluno.getCurso().getId() : null
+            ))
+            .toList();
     }
 
-    public List<Aluno> findByCursoID(Integer idCurso){
-        return repository.findByCursoID(idCurso);
+    public List<AlunoResponseDTO> findByCursoID(Integer idCurso){
+        return repository.findByCursoID(idCurso)
+            .stream()
+            .map(aluno -> new AlunoResponseDTO(
+                aluno.getId(),
+                aluno.getNome(),
+                aluno.getEmail(),
+                aluno.getCurso() != null ? aluno.getCurso().getId() : null
+            ))
+            .toList();
     }
 
     public Aluno findById(Integer id){

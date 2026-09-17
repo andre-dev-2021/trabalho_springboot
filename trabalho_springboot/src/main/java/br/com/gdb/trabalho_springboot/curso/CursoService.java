@@ -20,12 +20,26 @@ public class CursoService {
     @Autowired
     private ProfessorRepository professorRepository;
 
-    public List<Curso> findAll(){
-        return repository.findAll();
+    public List<CursoResponseDTO> findAll(){
+        return repository.findAll()
+            .stream()
+            .map(curso -> new CursoResponseDTO(
+                    curso.getId(),
+                    curso.getProfessor() != null ? curso.getProfessor().getId() : null,
+                    curso.getNome()
+            ))
+            .toList();
     }
 
-    public List<Curso> findByProfessorID(Integer idProfessor){
-        return repository.findByProfessorID(idProfessor);
+    public List<CursoResponseDTO> findByProfessorID(Integer idProfessor){
+        return repository.findByProfessorID(idProfessor)
+            .stream()
+            .map(curso -> new CursoResponseDTO(
+                    curso.getId(),
+                    curso.getProfessor() != null ? curso.getProfessor().getId() : null,
+                    curso.getNome()
+            ))
+            .toList();
     }
 
     public Curso findById(Integer id){
