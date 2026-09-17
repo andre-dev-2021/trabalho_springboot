@@ -11,6 +11,6 @@ public record CursoRequestDTO(
     String nome,
 
     @NotNull(message = "É necessário informar o id do professor.")
-    Integer idProfessor
+    Integer professor_id
     
 ) {}

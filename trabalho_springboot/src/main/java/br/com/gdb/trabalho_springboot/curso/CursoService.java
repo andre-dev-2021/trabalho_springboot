@@ -31,8 +31,8 @@ public class CursoService {
             .toList();
     }
 
-    public List<CursoResponseDTO> findByProfessorID(Integer idProfessor){
-        return repository.findByProfessorID(idProfessor)
+    public List<CursoResponseDTO> findByProfessorID(Integer professor_id){
+        return repository.findByProfessorID(professor_id)
             .stream()
             .map(curso -> new CursoResponseDTO(
                     curso.getId(),
@@ -48,8 +48,8 @@ public class CursoService {
     }
 
     public void save(CursoRequestDTO request){
-        Professor professor = professorRepository.findById(request.idProfessor())
-            .orElseThrow(() -> new InvalidReferenceException("O professor com ID " + request.idProfessor() + " não existe."));
+        Professor professor = professorRepository.findById(request.professor_id())
+            .orElseThrow(() -> new InvalidReferenceException("O professor com ID " + request.professor_id() + " não existe."));
 
         Curso curso = new Curso(
             request.nome(),

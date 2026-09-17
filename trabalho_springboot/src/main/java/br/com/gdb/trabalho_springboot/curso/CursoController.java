@@ -16,9 +16,9 @@ public class CursoController {
     private CursoService service;
 
     @GetMapping
-    public List<CursoResponseDTO> findAll( @RequestParam(required = false) Integer idProfessor ){        
-        if(idProfessor != null){
-            return service.findByProfessorID(idProfessor);
+    public List<CursoResponseDTO> findAll( @RequestParam(required = false) Integer professor_id ){        
+        if(professor_id != null){
+            return service.findByProfessorID(professor_id);
         }
 
         return service.findAll();
